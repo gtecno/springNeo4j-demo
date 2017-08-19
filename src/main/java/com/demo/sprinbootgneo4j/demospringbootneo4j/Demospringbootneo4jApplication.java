@@ -1,7 +1,6 @@
 package com.demo.sprinbootgneo4j.demospringbootneo4j;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ public class Demospringbootneo4jApplication {
 
 
 	@Bean
-	CommandLineRunner demo(PersonRepository personRepository) {
+	CommandLineRunner demo(PersonRepository personRepository, MovieRepository movieRepository) {
 		return args -> {
 
 			personRepository.deleteAll();
@@ -83,6 +82,25 @@ public class Demospringbootneo4jApplication {
 			log.info("Lookup each person by name...");
 			team.stream().forEach(person -> log.info(
 					"\t" + personRepository.findByName(person.getName()).toString()));
+
+
+			movieRepository.deleteAll();
+			Movie matrix = new Movie("Matrix",craig);
+			Movie matrixReload = new Movie("Matrix Recargado",craig);
+			Movie matrix3 = new Movie("Matrix 3",craig);
+			Movie batman = new Movie("Batman",gregorio);
+			Movie supermans = new Movie("Superman",craig);
+
+			Set<Person> actores = new HashSet<>();
+			actores.addAll(team);
+			matrix.getActors(actores);
+
+			List<Movie> movies = Arrays.asList(matrix, matrixReload,matrix3,batman,supermans);
+			movieRepository.save(movies);
+
+
+
+
 		};
 	}
 }

@@ -12,7 +12,7 @@ import java.util.List;
 interface MovieRepository extends GraphRepository<Movie> {
 
     @Query("MATCH (m:Movie)<-[rating:RATED]-(user) WHERE id(m) = {movieId} RETURN rating")
-    Iterable<Rating> getRatings(@Param("movieID") Long movieId);
+    Iterable<Movie> getRatings(@Param("movieID") Long movieId);
 
     List<Movie> findByTitle(String title);
 }

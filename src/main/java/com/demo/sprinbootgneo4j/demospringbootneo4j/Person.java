@@ -43,7 +43,7 @@ public class Person {
         teammates.add(person);
     }
 
-    @Relationship(type = "AMIGOS", direction = Relationship.DIRECTION)
+    @Relationship(type = "AMIGOS", direction = Relationship.UNDIRECTED)
     public Set<Person> amigos;
 
     public void amigos(Person person){

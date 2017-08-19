@@ -14,12 +14,46 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity
 public class Movie {
 
-    @GraphId Long id;
+  @GraphId private  Long id;
 
-    String title;
+   private String title;
 
-    Person director;
+   private  Person director;
+
 
     @Relationship(type="ACTED_IN", direction = Relationship.INCOMING)
-    Set<Person> actors = new HashSet<>();
+ private   Set<Person> actors = new HashSet<>();
+
+
+    public Movie() {
+    }
+
+    public Movie(String title) {
+        this.title = title;
+    }
+
+    public Movie( String title, Person director) {
+        this.title = title;
+        this.director = director;
+    }
+
+    public Movie(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Set<Person> getActors(Set<Person> actores) {
+        return actors;
+    }
+
+    public void setActors(Set<Person> actors) {
+        this.actors = actors;
+    }
 }
