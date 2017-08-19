@@ -43,6 +43,16 @@ public class Person {
         teammates.add(person);
     }
 
+    @Relationship(type = "AMIGOS", direction = Relationship.DIRECTION)
+    public Set<Person> amigos;
+
+    public void amigos(Person person){
+        if (amigos == null) {
+            amigos = new HashSet<>();
+        }
+        amigos.add(person);
+    }
+
     public String toString() {
 
         return this.name + "'s teammates => "
